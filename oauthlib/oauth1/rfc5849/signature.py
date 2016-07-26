@@ -470,8 +470,12 @@ _jwtrs1 = None
 def _jwt_rs1_signing_algorithm():
     global _jwtrs1
     if _jwtrs1 is None:
-        import jwt.algorithms as jwtalgo
-        _jwtrs1 = jwtalgo.RSAAlgorithm(jwtalgo.hashes.SHA1)
+        # import jwt.algorithms as jwtalgo
+        # _jwtrs1 = jwtalgo.RSAAlgorithm(jwtalgo.hashes.SHA1)
+        # Edits to use pycrypto instead of cryptography to get working on GAE
+        from jwt.contrib.algorithms.pycrypto import RSAAlgorithm
+        from Crypto.Hash import SHA
+        _jwtrs1 = RSAAlgorithm(SHA)
     return _jwtrs1
 
 def sign_rsa_sha1(base_string, rsa_private_key):
