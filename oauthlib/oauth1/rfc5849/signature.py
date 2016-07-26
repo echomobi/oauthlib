@@ -33,6 +33,7 @@ except ImportError:
 from . import utils
 from oauthlib.common import urldecode, extract_params, safe_string_equals
 from oauthlib.common import bytes_type, unicode_type
+import Crypto
 
 
 def construct_base_string(http_method, base_string_uri,
